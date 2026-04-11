@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "C:/Program Files/Java/jdk-21.0.10/bin/jwebserver.exe",
+      "runtimeArgs": ["-p", "3000", "-d", "F:/portfolio"],
+      "port": 3000
+    }
+  ]
+}

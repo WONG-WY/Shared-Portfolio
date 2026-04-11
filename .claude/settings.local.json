@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Read(//usr/**)",
+      "Read(//usr/local/**)",
+      "Read(//c/Program Files/nodejs/**)",
+      "Bash(cmd.exe /c \"where node\")",
+      "Bash(cmd.exe /c \"where npm\")",
+      "Bash(cmd.exe /c \"where node && where npm\")",
+      "Read(//c/Users/wongw/AppData/Roaming/**)",
+      "Read(//c/Users/wongw/**)",
+      "Read(//c//**)",
+      "Bash(cmd.exe /c \"where python\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cmd.exe /c \"where powershell\")"
+    ]
+  }
+}
