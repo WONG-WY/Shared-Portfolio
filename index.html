@@ -1,542 +1,371 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio – Wong Wing Yin</title>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            beige: {
-              50:  '#FFFDF9',
-              100: '#FAF7F2',
-              200: '#F2EAE0',
-              300: '#E5D8CC',
-              400: '#D4C4B4',
-            },
-            brand: {
-              warm: '#C4916A',
-              cool: '#A87BA0',
-            }
-          }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wong Wing Yin | The Digital Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-surface": "#353328",
+          "secondary-container": "#ffdefe",
+          "tertiary-fixed-dim": "#eed9cc",
+          "on-tertiary-fixed": "#504238",
+          "surface-container-lowest": "#ffffff",
+          "surface-container": "#f3ede0",
+          "secondary-fixed": "#ffdefe",
+          "surface-dim": "#dfdac9",
+          "surface-variant": "#e8e2d2",
+          "inverse-primary": "#fecdae",
+          "secondary-fixed-dim": "#f0d0ef",
+          "on-secondary": "#fff7fa",
+          "on-error": "#fff7f6",
+          "secondary-dim": "#634b65",
+          "tertiary": "#6b5c52",
+          "on-background": "#353328",
+          "primary-dim": "#6e4b33",
+          "tertiary-container": "#fde7da",
+          "primary-fixed": "#fecdae",
+          "surface": "#fef9ef",
+          "on-secondary-fixed-variant": "#705771",
+          "on-primary-container": "#65432c",
+          "on-tertiary-container": "#63544a",
+          "on-surface-variant": "#625f53",
+          "surface-bright": "#fef9ef",
+          "primary-container": "#fecdae",
+          "primary-fixed-dim": "#efc0a1",
+          "surface-container-low": "#f8f3e8",
+          "surface-container-high": "#ede8d9",
+          "on-primary-fixed-variant": "#6f4d35",
+          "on-error-container": "#671200",
+          "outline-variant": "#b6b2a3",
+          "on-tertiary-fixed-variant": "#6d5e54",
+          "error-container": "#fa7150",
+          "secondary": "#705771",
+          "primary": "#7b573e",
+          "error-dim": "#821a01",
+          "inverse-on-surface": "#a09d94",
+          "tertiary-fixed": "#fde7da",
+          "on-secondary-container": "#654d67",
+          "surface-tint": "#7b573e",
+          "error": "#aa371c",
+          "background": "#fef9ef",
+          "on-primary-fixed": "#4f311b",
+          "on-primary": "#fff7f4",
+          "on-tertiary": "#fff7f4",
+          "on-secondary-fixed": "#523b54",
+          "inverse-surface": "#0f0e09",
+          "tertiary-dim": "#5f5046",
+          "surface-container-highest": "#e8e2d2",
+          "outline": "#7e7b6d"
+        },
+        borderRadius: {
+          DEFAULT: "0.25rem",
+          lg: "0.5rem",
+          xl: "0.75rem",
+          full: "9999px"
+        },
+        fontFamily: {
+          headline: ["Newsreader", "serif"],
+          body: ["Manrope", "sans-serif"],
+          label: ["Manrope", "sans-serif"]
         }
       }
     }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    * { box-sizing: border-box; }
-    .gradient-text {
-      background: linear-gradient(135deg, #C4916A, #A87BA0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .card-hover {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-    }
-    .nav-link {
-      position: relative;
-      transition: color 0.2s;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(135deg, #C4916A, #A87BA0);
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after { width: 100%; }
-    .tech-badge {
-      transition: transform 0.2s, background-color 0.2s;
-    }
-    .tech-badge:hover { transform: scale(1.05); }
-    .btn-primary {
-      transition: all 0.2s ease;
-    }
-    .btn-primary:hover { transform: translateY(-1px); filter: brightness(1.1); }
-    .hero-bg {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #1e3a5f 70%, #0f172a 100%);
-    }
-    .hero-bg-light {
-      background: linear-gradient(135deg, #FAF7F2 0%, #F2EAE0 50%, #EDE0F0 100%);
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in-up { animation: fadeInUp 0.7s ease forwards; }
-    .fade-in-up-delay-1 { animation: fadeInUp 0.7s ease 0.1s forwards; opacity: 0; }
-    .fade-in-up-delay-2 { animation: fadeInUp 0.7s ease 0.2s forwards; opacity: 0; }
-    .fade-in-up-delay-3 { animation: fadeInUp 0.7s ease 0.3s forwards; opacity: 0; }
-  </style>
+  }
+</script>
+<style>
+  body { font-family: 'Manrope', sans-serif; background-color: #fef9ef; color: #353328; }
+  .font-serif { font-family: 'Newsreader', serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+</style>
 </head>
-<body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState, useEffect } = React;
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
 
-    // ─── DATA ──────────────────────────────────────────────────────────────────
-    const projects = [
-      {
-        id: 1,
-        emoji: "🔐",
-        color: "from-amber-300 to-yellow-200",
-        title: "Privacy Gateway on Microsoft Azure",
-        description: [
-          "Deployed an OpenVPN server on an Azure VM to establish encrypted tunnels and mask client IPs.",
-          "Integrated a Pi-hole DNS sinkhole with a ~180,000-domain blocklist to block ads and minimize latency.",
-          "Validated IP masking and ad-blocking effectiveness through end-to-end testing with third-party tools.",
-        ],
-        technologies: ["Azure VM", "OpenVPN", "Pi-hole", "DNS", "Linux"],
-        image: null,         // Add: '/images/privacy-gateway.jpg'
-        video: null,         // Add: 'https://www.youtube.com/embed/VIDEO_ID' or '/videos/demo.mp4'
-        videoType: "youtube",// 'youtube' | 'local'
-        liveLink: null,      // Add live URL
-        githubLink: null,    // Add GitHub URL
-      },
-      {
-        id: 2,
-        emoji: "🏫",
-        color: "from-purple-300 to-violet-200",
-        title: "Full-Stack School Decision-Support Tool",
-        description: [
-          "Built a Vue.js and Node.js platform integrating government APIs for real-time school data comparison.",
-          "Implemented Auth0 Headless Authentication (ROPC) to secure APIs with JWTs and retain custom UI.",
-          "Engineered a dual-write mechanism via Express.js to sync MongoDB as the single Source of Truth.",
-        ],
-        technologies: ["Vue.js", "Node.js", "Express", "Auth0", "MongoDB"],
-        image: null,
-        video: null,
-        videoType: "local",
-        liveLink: null,
-        githubLink: null,
-      },
-      {
-        id: 3,
-        emoji: "🎨",
-        color: "from-rose-300 to-pink-200",
-        title: "Real-Time Synchronized Painting App",
-        description: [
-          "Engineered a backend server to convert a single-player app into a real-time multiplayer canvas.",
-          "Utilized Java Sockets to efficiently handle concurrent client connections and data synchronization.",
-          "Led server-side development and system integration to ensure timely project completion.",
-        ],
-        technologies: ["Java", "Sockets", "Multithreading", "Real-time Sync"],
-        image: null,
-        video: null,
-        videoType: "local",
-        liveLink: null,
-        githubLink: null,
-      },
-    ];
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FEF9EF]/80 backdrop-blur-xl transition-all duration-300">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-6">
+    <a class="font-serif text-2xl font-semibold text-[#7B573E]" href="#">Wong Wing Yin</a>
+    <div class="hidden md:flex items-center gap-10">
+      <a class="text-[#7B573E] border-b-2 border-[#7B573E] pb-1 font-serif italic text-lg tracking-tight transition-colors duration-300" href="#projects">Projects</a>
+      <a class="text-[#353328]/60 font-sans hover:text-[#705771] transition-colors duration-300" href="#experience">Experience</a>
+      <a class="text-[#353328]/60 font-sans hover:text-[#705771] transition-colors duration-300" href="#contact">Contact</a>
+    </div>
+    <a class="px-6 py-2 bg-primary text-on-primary rounded-xl font-medium hover:scale-95 transition-transform duration-200 shadow-sm" href="#contact">
+      Get in Touch
+    </a>
+  </div>
+</nav>
 
-    // ─── COMPONENTS ─────────────────────────────────────────────────────────────
+<main class="pt-24">
 
-    function MoonIcon() {
-      return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-        </svg>
-      );
-    }
+  <!-- Hero Section -->
+  <section class="min-h-[819px] flex flex-col justify-center px-8 max-w-7xl mx-auto relative overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 z-10">
+        <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl leading-[1.1] text-on-surface mb-8">
+          The art of <span class="italic text-primary">scalable</span> architecture.
+        </h1>
+        <p class="font-body text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-10">
+          Wong Wing Yin is a Software Developer weaving precision into code. Focused on building elegant solutions and robust systems that stand the test of time.
+        </p>
+        <div class="flex gap-4">
+          <a class="inline-flex items-center gap-2 group" href="#projects">
+            <span class="font-label uppercase tracking-widest text-sm font-bold text-primary group-hover:mr-2 transition-all">View Curated Works</span>
+            <span class="material-symbols-outlined text-primary">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-surface-container-low shadow-xl">
+          <img class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]"
+               alt="Abstract digital art featuring warm terracotta and beige organic shapes layered to represent complex system architecture and flow"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCUdjs7vgVDEiVSf4MCCtmIIcAurrtCIIplWKNesM7lOkqsqp4a6NHNjvrPBkxDptfmIkD3msLC8J0Xoo1E4u0EI9EbJjf5qNXRcjDw6bbI9yc2DUmOzi-p9jfWhjlObQWJ73mFDcV6soUWvrYyX8KV6DlEgOvjKDJCLx7hjM1i31vhlfDjkTmS0F_ZJkuWAaZfG1EFCO7jDEmhxXEDJxdurntpFO3RY9T5SzdeQnn5ZG5rfIfaYUk538E6cmr2r13JSZhvxKbxxdy"/>
+        </div>
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container/30 rounded-full blur-3xl"></div>
+      </div>
+    </div>
+  </section>
 
-    function SunIcon() {
-      return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 110 14A7 7 0 0112 5z" />
-        </svg>
-      );
-    }
+  <!-- Featured Projects (Bento Grid) -->
+  <section class="py-32 bg-surface-container-low/50" id="projects">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        <div class="max-w-xl">
+          <span class="font-label uppercase tracking-[0.2em] text-sm text-secondary mb-4 block">Selected Works</span>
+          <h2 class="font-serif text-5xl md:text-6xl text-on-surface italic">A Gallery of Functional Craft</h2>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    function ExternalLinkIcon() {
-      return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 inline ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
-      );
-    }
-
-    function Header({ dark, onToggle }) {
-      const [menuOpen, setMenuOpen] = useState(false);
-      const [scrolled, setScrolled] = useState(false);
-
-      useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-      }, []);
-
-      const base = dark
-        ? `bg-gray-900/95 border-gray-700/60 ${scrolled ? 'shadow-lg shadow-black/30' : ''}`
-        : `bg-beige-100/95 border-beige-300/60 ${scrolled ? 'shadow-lg shadow-beige-300/80' : ''}`;
-
-      return (
-        <header className={`sticky top-0 z-50 border-b backdrop-blur-sm transition-all duration-300 ${base}`}>
-          <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            {/* Logo */}
-            <a href="#" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#C4916A] to-[#A87BA0] flex items-center justify-center text-white font-bold text-sm">
-                WY
-              </div>
-              <span className="text-xl font-bold gradient-text">Wong Wing Yin</span>
-            </a>
-
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {['Projects', 'Contact'].map(item => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className={`nav-link font-medium text-sm ${dark ? 'text-gray-300 hover:text-white' : 'text-stone-500 hover:text-stone-800'}`}
-                >
-                  {item}
-                </a>
-              ))}
-              <a
-                href="#"
-                className={`text-sm font-medium px-4 py-1.5 rounded-full border transition-all ${
-                  dark
-                    ? 'border-gray-600 text-gray-300 hover:border-blue-400 hover:text-blue-400'
-                    : 'border-beige-300 text-stone-500 hover:border-[#C4916A] hover:text-[#C4916A]'
-                }`}
-              >
-                Resume
-              </a>
-              <button
-                onClick={onToggle}
-                className={`p-2 rounded-lg transition-all ${dark ? 'bg-gray-800 text-yellow-400 hover:bg-gray-700' : 'bg-beige-200 text-stone-600 hover:bg-beige-300'}`}
-                aria-label="Toggle theme"
-              >
-                {dark ? <SunIcon /> : <MoonIcon />}
-              </button>
-            </div>
-
-            {/* Mobile */}
-            <div className="md:hidden flex items-center gap-3">
-              <button onClick={onToggle} className={`p-2 rounded-lg ${dark ? 'bg-gray-800 text-yellow-400' : 'bg-beige-200 text-stone-600'}`}>
-                {dark ? <SunIcon /> : <MoonIcon />}
-              </button>
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className={`p-2 rounded-lg ${dark ? 'bg-gray-800 text-gray-200' : 'bg-beige-200 text-stone-600'}`}
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d={menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'} />
-                </svg>
-              </button>
-            </div>
-          </nav>
-
-          {/* Mobile Dropdown */}
-          {menuOpen && (
-            <div className={`md:hidden border-t px-4 py-4 flex flex-col gap-4 ${dark ? 'bg-gray-900 border-gray-700' : 'bg-beige-100 border-beige-300'}`}>
-              {['Projects', 'Contact'].map(item => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMenuOpen(false)}
-                  className={`font-medium ${dark ? 'text-gray-300' : 'text-gray-700'}`}
-                >
-                  {item}
-                </a>
-              ))}
-              <a href="#" className={`font-medium ${dark ? 'text-gray-300' : 'text-gray-700'}`}>Resume</a>
-            </div>
-          )}
-        </header>
-      );
-    }
-
-    function Hero({ dark }) {
-      const bg = dark ? 'hero-bg' : 'hero-bg-light';
-      const textSub = dark ? 'text-blue-200' : 'text-[#8B6B4A]';
-      const textBody = dark ? 'text-gray-300' : 'text-stone-500';
-      const pillBg = dark ? 'bg-white/10 text-blue-300 border border-white/10' : 'bg-[#F5EDE0] text-[#8B6B4A] border border-[#E8D8C0]';
-
-      return (
-        <section className={`${bg} py-24 sm:py-32 px-4`}>
-          <div className="max-w-4xl mx-auto text-center">
-            <div className={`inline-block text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 fade-in-up ${pillBg}`}>
-              Available for opportunities
-            </div>
-            <h1 className={`text-5xl sm:text-7xl font-extrabold mb-6 leading-tight fade-in-up-delay-1 ${dark ? 'text-white' : 'text-[#3C3028]'}`}>
-              Hi, I'm{' '}
-              <span className="gradient-text">Wong Wing Yin</span>
-            </h1>
-            <p className={`text-lg sm:text-xl mb-8 max-w-2xl mx-auto fade-in-up-delay-2 ${textBody}`}>
-              A software developer passionate about building scalable systems, cloud infrastructure,
-              and real-time applications. I turn complex problems into elegant solutions.
+        <!-- Project 1: Privacy Gateway -->
+        <div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+          <div class="aspect-video overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                 alt="Stylized architectural diagram of a cloud network gateway with blue and gold glowing lines representing data security and routing"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgWk9yxF-pMrJCSP-d_wgwZHfRR_eVSBYkJw1fUa7ZhpH4nccdsi8weSoCuHv14BJK308ao7RNWkSPWlVWsDQxRnvmta2d5s9oKmAzvG81bjcUhA2t-t_rTV2RolTlfsiZLwsbsSv17w5dtu1nEAbd57N8HUXoLye_h9SR63Gl9OMN3xaIfGIC50y4E9TEJloVwBJLdLHGvTcaQnCFon85YnVUhW7neG-WU9jg1nkOuUTwSPok-DsJo0ddkVMxZRls6bCz-pfYA28i"/>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="font-serif text-2xl text-on-surface mb-3">Privacy Gateway on Microsoft Azure</h3>
+            <p class="text-on-surface-variant mb-6 flex-grow leading-relaxed">
+              Deployed an OpenVPN server on an Azure VM to establish encrypted tunnels and mask client IPs. Integrated a Pi-hole DNS sinkhole with a ~180,000-domain blocklist to block ads and minimize latency.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 fade-in-up-delay-3">
-              <a
-                href="#projects"
-                className="btn-primary px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#C4916A] to-[#A87BA0] shadow-lg shadow-[#C4916A]/30"
-              >
-                View My Work
-              </a>
-              <a
-                href="#contact"
-                className={`btn-primary px-8 py-3 rounded-xl font-semibold border-2 transition-colors ${
-                  dark ? 'border-gray-600 text-gray-200 hover:border-blue-400 hover:text-blue-400' : 'border-beige-300 text-stone-600 hover:border-[#C4916A] hover:text-[#C4916A]'
-                }`}
-              >
-                Get In Touch
-              </a>
-            </div>
-
-            {/* Stats */}
-            <div className={`mt-16 grid grid-cols-3 gap-8 max-w-sm mx-auto fade-in-up ${dark ? 'text-gray-400' : 'text-stone-400'}`}>
-              {[['3+', 'Projects'], ['5+', 'Technologies'], ['100%', 'Dedication']].map(([num, label]) => (
-                <div key={label} className="text-center">
-                  <div className={`text-2xl font-bold gradient-text`}>{num}</div>
-                  <div className="text-xs mt-1">{label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function ProjectCard({ project, dark, index }) {
-      const cardBg = dark ? 'bg-gray-800 border-gray-700/60 hover:border-blue-500/50' : 'bg-beige-50 border-beige-300 hover:border-[#C4916A]/60';
-      const descColor = dark ? 'text-gray-300' : 'text-stone-500';
-      const badgeBg = dark ? 'bg-gray-700/80 text-blue-300' : 'bg-[#F5EDE0] text-[#8B5E3C]';
-      const labelColor = dark ? 'text-gray-500' : 'text-stone-400';
-
-      return (
-        <div className={`card-hover border rounded-2xl overflow-hidden ${cardBg}`} style={{ animationDelay: `${index * 0.1}s` }}>
-          {/* Thumbnail */}
-          <div className={`relative h-52 bg-gradient-to-br ${project.color} overflow-hidden`}>
-            {project.image ? (
-              <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-white">
-                <div className="text-6xl mb-3">{project.emoji}</div>
-                <div className="text-sm font-medium opacity-80">Project Preview</div>
-              </div>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-
-          {/* Body */}
-          <div className="p-6">
-            <h3 className={`text-xl font-bold mb-3 leading-tight ${dark ? 'text-white' : 'text-[#3C3028]'}`}>
-              {project.title}
-            </h3>
-
-            <ul className={`text-sm space-y-1.5 mb-5 ${descColor}`}>
-              {project.description.map((line, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className={`${dark ? 'text-blue-400' : 'text-[#C4916A]'} mt-0.5 flex-shrink-0`}>▸</span>
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Tech stack */}
-            <div className="mb-5">
-              <p className={`text-xs font-semibold uppercase tracking-wider mb-2 ${labelColor}`}>Stack</p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.technologies.map(tech => (
-                  <span key={tech} className={`tech-badge text-xs px-2.5 py-1 rounded-full font-medium ${badgeBg}`}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Video embed */}
-            {project.video && (
-              <div className="mb-5">
-                <p className={`text-xs font-semibold uppercase tracking-wider mb-2 ${labelColor}`}>Demo</p>
-                {project.videoType === 'youtube' ? (
-                  <iframe
-                    width="100%"
-                    height="180"
-                    src={project.video}
-                    title={project.title + ' demo'}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-xl"
-                  />
-                ) : (
-                  <video controls className="w-full rounded-xl bg-black" height="180">
-                    <source src={project.video} type="video/mp4" />
-                  </video>
-                )}
-              </div>
-            )}
-
-            {/* CTA Buttons */}
-            <div className={`flex gap-3 pt-4 border-t ${dark ? 'border-gray-700' : 'border-beige-300'}`}>
-              {project.liveLink ? (
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary flex-1 text-center py-2.5 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#C4916A] to-[#A87BA0] shadow shadow-[#C4916A]/20"
-                >
-                  Live Demo <ExternalLinkIcon />
-                </a>
-              ) : (
-                <span className={`flex-1 text-center py-2.5 px-4 rounded-xl text-sm font-medium border-2 border-dashed ${dark ? 'border-gray-700 text-gray-600' : 'border-beige-300 text-stone-400'}`}>
-                  Link Coming Soon
-                </span>
-              )}
-              {project.githubLink && (
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${dark ? 'bg-gray-700 hover:bg-gray-600 text-gray-200' : 'bg-beige-200 hover:bg-beige-300 text-stone-700'}`}
-                >
-                  GitHub
-                </a>
-              )}
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Azure VM</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">OpenVPN</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Pi-hole</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Linux</span>
             </div>
           </div>
         </div>
-      );
-    }
 
-    function Projects({ dark }) {
-      const sectionBg = dark ? 'bg-gray-900' : 'bg-beige-200';
-      const headingColor = dark ? 'text-white' : 'text-[#3C3028]';
-      const subColor = dark ? 'text-gray-400' : 'text-stone-500';
-
-      return (
-        <section id="projects" className={`${sectionBg} py-20 sm:py-28 px-4`}>
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <p className={`text-sm font-semibold uppercase tracking-widest mb-3 gradient-text`}>Portfolio</p>
-              <h2 className={`text-4xl sm:text-5xl font-extrabold mb-4 ${headingColor}`}>Featured Projects</h2>
-              <p className={`text-lg max-w-2xl mx-auto ${subColor}`}>
-                A selection of work spanning cloud infrastructure, full-stack development, and real-time systems.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((p, i) => (
-                <ProjectCard key={p.id} project={p} dark={dark} index={i} />
-              ))}
+        <!-- Project 2: Decision-Support Tool -->
+        <div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 lg:mt-12">
+          <div class="aspect-video overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                 alt="Clean professional dashboard interface with elegant charts and minimalist data visualizations in soft earthy tones"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYNr-9gs0F2O5M520C3uZ7U1FJDyJz9Yg33oOLNhlDoqCopf-qnNarc3X7Ob_EJv8O911n1AGiS9bnW_qrTE35_kZVkY9H1hyCEDhpGxNlGp6pAPi7rRbzydd7KkR4oWAUVN1DSwjDy1jam1RZg83rDgqxOwZnpl_aeFRw0pdC7htSi_AF2Bn5KDzsPoOvviD_ROlsJP_x838x0gk_GMl3TyvIgnAaKyrYRvQVG2AbYw1MjxMRsM4aXIZwfBJpjVuInMhsygvueXAr"/>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="font-serif text-2xl text-on-surface mb-3">Full-Stack School Decision-Support Tool</h3>
+            <p class="text-on-surface-variant mb-6 flex-grow leading-relaxed">
+              Built a Vue.js and Node.js platform integrating government APIs for real-time school data comparison. Implemented Auth0 Headless Authentication and a dual-write mechanism via Express.js with MongoDB.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Vue.js</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Node.js</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Auth0</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">MongoDB</span>
             </div>
           </div>
-        </section>
-      );
-    }
-
-    function Contact({ dark }) {
-      const sectionBg = dark ? 'bg-gray-800' : 'bg-beige-100';
-      const cardBg = dark ? 'bg-gray-900/60 border-gray-700' : 'bg-beige-200/60 border-beige-300';
-      const headingColor = dark ? 'text-white' : 'text-[#3C3028]';
-      const bodyColor = dark ? 'text-gray-400' : 'text-stone-500';
-      const linkColor = dark ? 'text-blue-400 hover:text-blue-300' : 'text-[#A87BA0] hover:text-[#C4916A]';
-
-      const contacts = [
-        { icon: '✉️', label: 'Email', value: 'your.email@example.com', href: 'mailto:your.email@example.com' },
-        { icon: '💼', label: 'LinkedIn', value: 'linkedin.com/in/yourprofile', href: 'https://linkedin.com' },
-        { icon: '💻', label: 'GitHub', value: 'github.com/yourprofile', href: 'https://github.com' },
-      ];
-
-      return (
-        <section id="contact" className={`${sectionBg} py-20 sm:py-28 px-4`}>
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-14">
-              <p className="text-sm font-semibold uppercase tracking-widest mb-3 gradient-text">Say Hello</p>
-              <h2 className={`text-4xl sm:text-5xl font-extrabold mb-4 ${headingColor}`}>Get In Touch</h2>
-              <p className={`text-lg max-w-xl mx-auto ${bodyColor}`}>
-                I'm open to new opportunities, collaborations, or just a friendly chat. My inbox is always open!
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-              {contacts.map(({ icon, label, value, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`card-hover border rounded-2xl p-6 text-center block ${cardBg}`}
-                >
-                  <div className="text-4xl mb-3">{icon}</div>
-                  <p className={`text-xs font-semibold uppercase tracking-wider mb-1 ${bodyColor}`}>{label}</p>
-                  <p className={`text-sm font-medium ${linkColor}`}>{value}</p>
-                </a>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <a
-                href="mailto:your.email@example.com"
-                className="btn-primary inline-block px-10 py-4 rounded-2xl font-bold text-white bg-gradient-to-r from-[#C4916A] to-[#A87BA0] shadow-xl shadow-[#C4916A]/30 text-lg"
-              >
-                Send Me an Email ✉️
-              </a>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Footer({ dark }) {
-      const bg = dark ? 'bg-gray-900 border-gray-800' : 'bg-beige-200 border-beige-300';
-      const textColor = dark ? 'text-gray-500' : 'text-stone-400';
-      const year = new Date().getFullYear();
-
-      return (
-        <footer className={`border-t py-10 px-4 ${bg}`}>
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded bg-gradient-to-br from-[#C4916A] to-[#A87BA0] flex items-center justify-center text-white font-bold text-xs">
-                WY
-              </div>
-              <span className={`text-sm ${textColor}`}>© {year} Wong Wing Yin. All rights reserved.</span>
-            </div>
-            <div className={`flex items-center gap-2 text-sm ${textColor}`}>
-              <span>Built with</span>
-              <span className="gradient-text font-semibold">React</span>
-              <span>&</span>
-              <span className="gradient-text font-semibold">Tailwind CSS</span>
-            </div>
-          </div>
-        </footer>
-      );
-    }
-
-    // ─── APP ────────────────────────────────────────────────────────────────────
-
-    function App() {
-      const [dark, setDark] = useState(false);
-
-      return (
-        <div className={`${dark ? 'bg-gray-900' : 'bg-beige-100'} min-h-screen transition-colors duration-300`}>
-          <Header dark={dark} onToggle={() => setDark(!dark)} />
-          <Hero dark={dark} />
-          <Projects dark={dark} />
-          <Contact dark={dark} />
-          <Footer dark={dark} />
         </div>
-      );
-    }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+        <!-- Project 3: Real-Time Painting App -->
+        <div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+          <div class="aspect-video overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                 alt="Colorful abstract brushstrokes intersecting on a dark canvas, symbolizing real-time collaborative creativity"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUnBPpHc6kbFDUfSqvLqqNPsGQmxkdE3KTVZfQaBI7ya0LQbLp2IsGh_jE2J2mI1hwEOuA77dbyiSfqvsURr1ynU13C7k1r1x2I0gjEtKrnm84zycgdH7deyd1PnA_1k5ih_ODhvZt6grZG1-ZBpI_W-8wJrBU-tdIsqThajMUoFmspH8Y6582qBSjsq7oW-t80O9R2qeDNdwK57nKkA-hR2PvLwG-0DClCau9VyG01pI_rqCcMF12wGkiQV8xYkeM-VTHqhVhHE2L"/>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h3 class="font-serif text-2xl text-on-surface mb-3">Real-Time Synchronized Painting App</h3>
+            <p class="text-on-surface-variant mb-6 flex-grow leading-relaxed">
+              Engineered a backend server to convert a single-player app into a real-time multiplayer canvas. Utilized Java Sockets to efficiently handle concurrent client connections and data synchronization.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Java</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">WebSockets</span>
+              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Multithreading</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Education -->
+  <section class="py-32 px-8 max-w-7xl mx-auto" id="experience">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-4">
+        <h2 class="font-serif text-5xl text-on-surface sticky top-32">The Professional Journey</h2>
+      </div>
+      <div class="lg:col-span-8 space-y-24">
+
+        <!-- Work Experience -->
+        <div>
+          <h3 class="font-label uppercase tracking-widest text-xs text-secondary font-bold mb-12 border-b border-outline-variant/20 pb-4">Professional Tenure</h3>
+          <div class="space-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="text-on-surface-variant font-label text-sm uppercase tracking-tighter">Jun – Aug 2024</div>
+              <div class="md:col-span-3">
+                <h4 class="text-2xl font-serif text-on-surface">Software Engineering Intern</h4>
+                <p class="italic text-primary mb-4">Midland Holdings Limited · Digital Development Department</p>
+                <p class="text-on-surface-variant leading-relaxed">Maintained database consistency by writing MongoDB scripts for batch updates to current Excel files. Automated browser image processing using Playwright scripts for testing. Facilitated knowledge-sharing workshops across multiple domains through systematic full-stack documentation.</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="text-on-surface-variant font-label text-sm uppercase tracking-tighter">2021 – 2025</div>
+              <div class="md:col-span-3">
+                <h4 class="text-2xl font-serif text-on-surface">Teaching Assistant</h4>
+                <p class="italic text-primary mb-4">Hong Kong Baptist University</p>
+                <p class="text-on-surface-variant leading-relaxed">Facilitating student growth in core computer science paradigms and complex algorithmic problem-solving.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div>
+          <h3 class="font-label uppercase tracking-widest text-xs text-secondary font-bold mb-12 border-b border-outline-variant/20 pb-4">Academic Foundation</h3>
+          <div class="space-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="text-on-surface-variant font-label text-sm uppercase tracking-tighter">Sep 2021 – Jul 2025</div>
+              <div class="md:col-span-3">
+                <h4 class="text-2xl font-serif text-on-surface">BEng in Computer Science</h4>
+                <p class="text-on-surface-variant">Hong Kong Baptist University, Hong Kong</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="text-on-surface-variant font-label text-sm uppercase tracking-tighter">Exchange</div>
+              <div class="md:col-span-3">
+                <h4 class="text-2xl font-serif text-on-surface">Exchange Semester — Computer Science &amp; Mathematics</h4>
+                <p class="text-on-surface-variant">OTH Regensburg, Germany</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills -->
+  <section class="py-32 bg-surface-container">
+    <div class="px-8 max-w-7xl mx-auto">
+      <div class="flex flex-col items-center text-center mb-20">
+        <h2 class="font-serif text-5xl italic text-on-surface mb-6">Technical Vocabulary</h2>
+        <p class="text-on-surface-variant max-w-xl">The languages I speak to machines, and the ones I use with humans.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10">
+          <span class="material-symbols-outlined text-primary mb-6">code</span>
+          <h4 class="font-serif text-xl mb-4">Programming</h4>
+          <span class="text-sm font-label text-on-surface-variant">Java, Python, JavaScript, C, MySQL, MQL</span>
+        </div>
+        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10 lg:mt-8">
+          <span class="material-symbols-outlined text-primary mb-6">web</span>
+          <h4 class="font-serif text-xl mb-4">Frameworks</h4>
+          <span class="text-sm font-label text-on-surface-variant">Vue.js, Node.js, Express.js, Docker</span>
+        </div>
+        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10">
+          <span class="material-symbols-outlined text-primary mb-6">cloud_queue</span>
+          <h4 class="font-serif text-xl mb-4">Cloud &amp; Tools</h4>
+          <span class="text-sm font-label text-on-surface-variant">Microsoft Azure, Docker Hub, Git, PostgreSQL, Figma</span>
+        </div>
+        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10 lg:mt-8">
+          <span class="material-symbols-outlined text-primary mb-6">translate</span>
+          <h4 class="font-serif text-xl mb-4">Linguistics</h4>
+          <span class="text-sm font-label text-on-surface-variant">English, Cantonese, Mandarin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-24 px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+      <div>
+        <span class="font-label uppercase tracking-[0.2em] text-sm text-secondary mb-4 block">Recognition</span>
+        <h2 class="font-serif text-5xl text-on-surface italic">Certifications</h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-8 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+        <span class="material-symbols-outlined text-primary mb-4">workspace_premium</span>
+        <h4 class="font-serif text-xl text-on-surface mb-2">Continuous Learning Centre<br>Hands-on ULV Workshop</h4>
+        <p class="text-sm text-on-surface-variant font-label">Jun 2024</p>
+      </div>
+      <div class="p-8 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+        <span class="material-symbols-outlined text-primary mb-4">security</span>
+        <h4 class="font-serif text-xl text-on-surface mb-2">Hong Kong Cyber Security Capture the Flag</h4>
+        <p class="text-sm text-on-surface-variant font-label">Nov 2022</p>
+      </div>
+      <div class="p-8 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+        <span class="material-symbols-outlined text-primary mb-4">emoji_events</span>
+        <h4 class="font-serif text-xl text-on-surface mb-2">PwC HackDay / CTF Competition</h4>
+        <p class="text-sm text-on-surface-variant font-label">Nov 2022</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-32 px-8 max-w-7xl mx-auto" id="contact">
+    <div class="bg-primary rounded-[2rem] p-12 md:p-24 text-center text-on-primary overflow-hidden relative">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-secondary-dim opacity-20 blur-[120px] rounded-full"></div>
+      <h2 class="font-serif text-5xl md:text-7xl mb-8 relative z-10">Let's build something <span class="italic">meaningful</span>.</h2>
+      <p class="text-lg md:text-xl text-primary-fixed mb-12 max-w-2xl mx-auto opacity-90 relative z-10">
+        Open for collaboration on scalable systems and innovative software solutions.
+      </p>
+      <div class="flex flex-col md:flex-row gap-6 justify-center relative z-10">
+        <a class="px-10 py-5 bg-surface text-on-surface rounded-full font-bold text-lg hover:bg-surface-container transition-colors" href="mailto:wongwingyin89@gmail.com">
+          Get In Touch
+        </a>
+        <div class="flex items-center justify-center gap-6">
+          <a class="w-14 h-14 rounded-full border border-primary-container flex items-center justify-center hover:bg-on-primary hover:text-primary transition-all" href="https://www.linkedin.com/in/wing-yin-wong" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a class="w-14 h-14 rounded-full border border-primary-container flex items-center justify-center hover:bg-on-primary hover:text-primary transition-all" href="https://github.com/WONG-WY" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-[#F8F3E8] border-t border-[#353328]/10">
+  <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+    <div class="mb-8 md:mb-0">
+      <span class="text-[#353328] font-serif italic text-xl">Wong Wing Yin</span>
+      <p class="text-[#353328]/40 font-sans text-xs tracking-widest uppercase mt-2">© 2025 The Digital Curator. Crafted with intention.</p>
+    </div>
+    <div class="flex gap-8">
+      <a class="text-[#353328]/40 hover:text-[#7B573E] font-sans text-sm tracking-widest uppercase transition-all" href="https://www.linkedin.com/in/wing-yin-wong" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="text-[#353328]/40 hover:text-[#7B573E] font-sans text-sm tracking-widest uppercase transition-all" href="https://github.com/WONG-WY" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="text-[#353328]/40 hover:text-[#7B573E] font-sans text-sm tracking-widest uppercase transition-all" href="mailto:wongwingyin89@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
