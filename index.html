@@ -92,13 +92,13 @@
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-[#FEF9EF]/80 backdrop-blur-xl transition-all duration-300">
   <div class="flex justify-between items-center max-w-7xl mx-auto px-8 py-6">
-    <a class="font-serif text-2xl font-semibold text-[#7B573E]" href="#">Wong Wing Yin</a>
+    <a class="font-serif text-xl font-normal tracking-wide text-[#7B573E]" href="#">Wong Wing Yin</a>
     <div class="hidden md:flex items-center gap-10">
-      <a class="text-[#7B573E] border-b-2 border-[#7B573E] pb-1 font-serif italic text-lg tracking-tight transition-colors duration-300" href="#projects">Projects</a>
-      <a class="text-[#353328]/60 font-sans hover:text-[#705771] transition-colors duration-300" href="#experience">Experience</a>
-      <a class="text-[#353328]/60 font-sans hover:text-[#705771] transition-colors duration-300" href="#contact">Contact</a>
+      <a class="text-[#7B573E] border-b border-[#7B573E] pb-1 transition-colors duration-300" href="#projects">Projects</a>
+      <a class="text-[#353328]/60 hover:text-[#705771] transition-colors duration-300" href="#experience">Experience</a>
+      <a class="text-[#353328]/60 hover:text-[#705771] transition-colors duration-300" href="#contact">Contact</a>
     </div>
-    <a class="px-6 py-2 bg-primary text-on-primary rounded-xl font-medium hover:scale-95 transition-transform duration-200 shadow-sm" href="#contact">
+    <a class="px-5 py-2 border border-primary text-primary text-sm font-medium tracking-wide hover:bg-primary hover:text-on-primary transition-colors duration-200" href="#contact">
       Get in Touch
     </a>
   </div>
@@ -107,7 +107,7 @@
 <main class="pt-24">
 
   <!-- Hero Section -->
-  <section class="min-h-[819px] flex flex-col justify-center px-8 max-w-7xl mx-auto relative overflow-hidden">
+  <section class="min-h-[90vh] flex flex-col justify-center px-8 max-w-7xl mx-auto relative overflow-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       <div class="lg:col-span-7 z-10">
         <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl leading-[1.1] text-on-surface mb-8">
@@ -124,7 +124,7 @@
         </div>
       </div>
       <div class="lg:col-span-5 relative">
-        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-surface-container-low shadow-xl">
+        <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low shadow-xl">
           <img class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]"
                alt="Abstract digital art featuring warm terracotta and beige organic shapes layered to represent complex system architecture and flow"
                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCUdjs7vgVDEiVSf4MCCtmIIcAurrtCIIplWKNesM7lOkqsqp4a6NHNjvrPBkxDptfmIkD3msLC8J0Xoo1E4u0EI9EbJjf5qNXRcjDw6bbI9yc2DUmOzi-p9jfWhjlObQWJ73mFDcV6soUWvrYyX8KV6DlEgOvjKDJCLx7hjM1i31vhlfDjkTmS0F_ZJkuWAaZfG1EFCO7jDEmhxXEDJxdurntpFO3RY9T5SzdeQnn5ZG5rfIfaYUk538E6cmr2r13JSZhvxKbxxdy"/>
@@ -146,7 +146,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <!-- Project 1: Privacy Gateway -->
-        <div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+        <div class="group flex flex-col bg-surface-container-lowest rounded-none overflow-hidden transition-all duration-500 hover:shadow-lg">
           <div class="aspect-video overflow-hidden">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  alt="Stylized architectural diagram of a cloud network gateway with blue and gold glowing lines representing data security and routing"
@@ -158,16 +158,16 @@
               Deployed an OpenVPN server on an Azure VM to establish encrypted tunnels and mask client IPs. Integrated a Pi-hole DNS sinkhole with a ~180,000-domain blocklist to block ads and minimize latency. Validated IP masking and ad-blocking effectiveness through end-to-end testing with third-party tools.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Azure VM</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">OpenVPN</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Pi-hole</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Linux</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Azure VM</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">OpenVPN</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Pi-hole</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Linux</span>
             </div>
           </div>
         </div>
 
         <!-- Project 2: Decision-Support Tool -->
-        <div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2 lg:mt-12">
+        <div class="group flex flex-col bg-surface-container-lowest rounded-none overflow-hidden transition-all duration-500 hover:shadow-lg lg:mt-12">
           <div class="aspect-video overflow-hidden">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  alt="Clean professional dashboard interface with elegant charts and minimalist data visualizations in soft earthy tones"
@@ -179,16 +179,16 @@
               Built a Vue.js and Node.js platform integrating government APIs for real-time school data comparison. Implemented Auth0 Headless Authentication (ROPC) to secure APIs with JWTs and retain custom UI. Engineered a dual-write mechanism via Express.js to sync MongoDB as the single Source of Truth.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Vue.js</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Node.js</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Auth0</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">MongoDB</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Vue.js</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Node.js</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Auth0</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">MongoDB</span>
             </div>
           </div>
         </div>
 
         <!-- Project 3: Real-Time Painting App -->
-        <div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-2">
+        <div class="group flex flex-col bg-surface-container-lowest rounded-none overflow-hidden transition-all duration-500 hover:shadow-lg">
           <div class="aspect-video overflow-hidden">
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                  alt="Colorful abstract brushstrokes intersecting on a dark canvas, symbolizing real-time collaborative creativity"
@@ -200,9 +200,9 @@
               Engineered a backend server to convert a single-player app into a real-time multiplayer canvas. Utilized Java Sockets to efficiently handle concurrent client connections and data synchronization. Led server-side development and system integration to ensure timely project completion.
             </p>
             <div class="flex flex-wrap gap-2">
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Java</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">WebSockets</span>
-              <span class="px-4 py-1.5 rounded-full bg-surface-container-highest text-on-surface-variant text-xs font-bold uppercase tracking-wider">Multithreading</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Java</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">WebSockets</span>
+              <span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs font-medium tracking-wide">Multithreading</span>
             </div>
           </div>
         </div>
@@ -284,27 +284,28 @@
   <!-- Technical Skills -->
   <section class="py-32 bg-surface-container">
     <div class="px-8 max-w-7xl mx-auto">
-      <div class="flex flex-col items-center text-center mb-20">
+      <div class="flex flex-col mb-20">
+        <span class="font-label uppercase tracking-[0.2em] text-sm text-secondary mb-4 block">Expertise</span>
         <h2 class="font-serif text-5xl italic text-on-surface mb-6">Technical Vocabulary</h2>
         <p class="text-on-surface-variant max-w-xl">The languages I speak to machines, and the ones I use with humans.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10">
+        <div class="p-8 bg-surface rounded-none hover:bg-surface-container-lowest transition-colors border border-outline-variant/10">
           <span class="material-symbols-outlined text-primary mb-6">code</span>
           <h4 class="font-serif text-xl mb-4">Programming</h4>
           <span class="text-sm font-label text-on-surface-variant">Java, Python, JavaScript, C, MySQL, MQL</span>
         </div>
-        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10 lg:mt-8">
+        <div class="p-8 bg-surface rounded-xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10 lg:mt-8">
           <span class="material-symbols-outlined text-primary mb-6">web</span>
           <h4 class="font-serif text-xl mb-4">Frameworks</h4>
           <span class="text-sm font-label text-on-surface-variant">Vue.js, Node.js, HTML, CSS</span>
         </div>
-        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10">
+        <div class="p-8 bg-surface rounded-none hover:bg-surface-container-lowest transition-colors border border-outline-variant/10">
           <span class="material-symbols-outlined text-primary mb-6">cloud_queue</span>
           <h4 class="font-serif text-xl mb-4">Software &amp; Platforms</h4>
           <span class="text-sm font-label text-on-surface-variant">GitHub, Docker/Docker Hub, Microsoft Azure/Azure CLI, MongoDB, Figma</span>
         </div>
-        <div class="p-8 bg-surface rounded-2xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10 lg:mt-8">
+        <div class="p-8 bg-surface rounded-xl hover:bg-surface-container-lowest transition-colors border border-outline-variant/10 lg:mt-8">
           <span class="material-symbols-outlined text-primary mb-6">translate</span>
           <h4 class="font-serif text-xl mb-4">Languages</h4>
           <span class="text-sm font-label text-on-surface-variant">Cantonese (Native), Mandarin (Fluent), English (Fluent), German (A1)</span>
@@ -342,14 +343,14 @@
 
   <!-- Contact Section -->
   <section class="py-32 px-8 max-w-7xl mx-auto" id="contact">
-    <div class="bg-primary rounded-[2rem] p-12 md:p-24 text-center text-on-primary overflow-hidden relative">
+    <div class="bg-primary rounded-xl p-12 md:p-24 text-center text-on-primary overflow-hidden relative">
       <div class="absolute top-0 right-0 w-96 h-96 bg-secondary-dim opacity-20 blur-[120px] rounded-full"></div>
       <h2 class="font-serif text-5xl md:text-7xl mb-8 relative z-10">Let's build something <span class="italic">meaningful</span>.</h2>
       <p class="text-lg md:text-xl text-primary-fixed mb-12 max-w-2xl mx-auto opacity-90 relative z-10">
         Open for collaboration on scalable systems and innovative software solutions.
       </p>
       <div class="flex flex-col md:flex-row gap-6 justify-center relative z-10">
-        <a class="px-10 py-5 bg-surface text-on-surface rounded-full font-bold text-lg hover:bg-surface-container transition-colors" href="mailto:wongwingyin89@gmail.com">
+        <a class="px-10 py-4 bg-surface text-on-surface font-medium text-sm tracking-widest uppercase hover:bg-surface-container transition-colors" href="mailto:wongwingyin89@gmail.com">
           Get In Touch
         </a>
         <div class="flex items-center justify-center gap-6">
@@ -385,8 +386,8 @@
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
   const sections = document.querySelectorAll('main section[id]');
 
-  const activeClass   = ['text-[#7B573E]','border-b-2','border-[#7B573E]','pb-1','font-serif','italic','text-lg','tracking-tight'];
-  const inactiveClass = ['text-[#353328]/60','font-sans','hover:text-[#705771]'];
+  const activeClass   = ['text-[#7B573E]','border-b','border-[#7B573E]','pb-1'];
+  const inactiveClass = ['text-[#353328]/60','hover:text-[#705771]'];
 
   function setActive(id) {
     navLinks.forEach(link => {
